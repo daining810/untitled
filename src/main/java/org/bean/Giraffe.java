@@ -9,4 +9,9 @@ public class Giraffe {
 
     private String name;
 
+    public void eat(Grass grass) {
+        System.out.println("Giraffe " + name + " is eating " + grass.getType() +
+                " grass with id " + grass.getId() + ".");
+    }
+
 }
