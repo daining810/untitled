@@ -30,7 +30,7 @@ public class App {
         System.out.println("doggy = " + doggy);
         System.out.println("doggy: " + doggy);
 
-
+        System.out.println("doggy.getName() = " + doggy.getName());
     }
 
 }
