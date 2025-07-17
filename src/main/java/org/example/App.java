@@ -26,7 +26,7 @@ public class App {
 
         Doggy doggy = new Doggy();
         doggy.setId(1L);
-        doggy.setName("小狗:Bingo");
+        doggy.setName("小狗:旺财");
         System.out.println("doggy = " + doggy);
         System.out.println("doggy: " + doggy);
 
