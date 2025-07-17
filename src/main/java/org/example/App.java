@@ -9,7 +9,6 @@ public class App {
         cotton.setId(1L);
         cotton.setType("长绒棉");
         cotton.setPrice(100.0);
-        cotton.setType();
     }
 
 }

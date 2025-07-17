@@ -89,32 +89,22 @@ public class Assembler {
         String a = instruction.substring(1);
         switch (a) {
             case "SP":
-                a = "0";
-                break;
-            case "LCL":
-                a = "1";
-                break;
-            case "ARG":
-                a = "2";
-                break;
-            case "THIS":
-                a = "3";
-                break;
-            case "THAT":
-                a = "4";
-                break;
             case "R0":
                 a = "0";
                 break;
+            case "LCL":
             case "R1":
                 a = "1";
                 break;
+            case "ARG":
             case "R2":
                 a = "2";
                 break;
+            case "THIS":
             case "R3":
                 a = "3";
                 break;
+            case "THAT":
             case "R4":
                 a = "4";
                 break;
@@ -164,6 +154,7 @@ public class Assembler {
                     if (!NumberUtil.isNumber(a)) {
                         if (freeRegister.containsKey(a)) {
                             a = freeRegister.get(a).toString();
+                            freeRegister.put(a, ramNo);
                         } else {
                             symbol.put(a, ramNo);
                             a = String.valueOf(ramNo);

@@ -30,7 +30,7 @@ public class UTF8Validator {
      *
      * @param filePath 文件路径
      * @return 包含错误位置和描述的 Map（键：字节偏移量，值：问题描述）
-     * @throws IOException
+     * @throws IOException 如果读取文件时发生错误
      */
     public static Map<Long, String> detectInvalidUTF8Sequences(String filePath) throws IOException {
         byte[] allBytes = Files.readAllBytes(Paths.get(filePath));
@@ -52,26 +52,23 @@ public class UTF8Validator {
         ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);
         CharBuffer charBuffer = CharBuffer.allocate(bytes.length * 2); // 分配足够空间
 
-        long position = 0;
-
         while (byteBuffer.hasRemaining()) {
             int startPosition = byteBuffer.position();
             CoderResult result = decoder.decode(byteBuffer, charBuffer, false);
 
             if (result.isError()) {
                 // 获取无效序列的开始位置
-                int errorPosition = startPosition;
                 int errorLength = 0;
 
                 try {
                     result.throwException();
                 } catch (MalformedInputException e) {
                     errorLength = e.getInputLength();
-                    errors.put((long) errorPosition, "无效的 UTF-8 序列 (长度: " + errorLength + ")");
+                    errors.put((long) startPosition, "无效的 UTF-8 序列 (长度: " + errorLength + ")");
                 } catch (UnmappableCharacterException e) {
                     errorLength = e.getInputLength();
-                    errors.put((long) errorPosition, "无法映射的字符 (代码: 0x" +
-                            bytesToHex(Arrays.copyOfRange(bytes, errorPosition, errorPosition + errorLength)) + ")");
+                    errors.put((long) startPosition, "无法映射的字符 (代码: 0x" +
+                            bytesToHex(Arrays.copyOfRange(bytes, startPosition, startPosition + errorLength)) + ")");
                 } catch (CharacterCodingException e) {
                     throw new RuntimeException(e);
                 }
