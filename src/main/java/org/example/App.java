@@ -19,7 +19,7 @@ public class App {
 
         Giraffe giraffe = new Giraffe();
         giraffe.setId(1L);
-        giraffe.setName("长颈鹿");
+        giraffe.setName("好看的长颈鹿");
         System.out.println("giraffe = " + giraffe);
         System.out.println("giraffe: " + giraffe);
         giraffe.eat(grass);
