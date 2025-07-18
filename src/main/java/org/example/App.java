@@ -32,6 +32,9 @@ public class App {
 
         System.out.println("doggy.getName() = " + doggy.getName());
         String foo = "foo";
+        System.out.println("foo = " + foo);
+        String boo = "boo";
+        System.out.println("boo = " + boo);
     }
 
 }
