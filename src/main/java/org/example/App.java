@@ -35,6 +35,7 @@ public class App {
         System.out.println("foo = " + foo);
         String boo = "boo";
         System.out.println("boo = " + boo);
+        System.out.println("boo = " + boo);
     }
 
 }
